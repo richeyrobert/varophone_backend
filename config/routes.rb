@@ -1,7 +1,10 @@
 Startstrap::Application.routes.draw do
+  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
+
   resources :users
 
-
+  match :dashboard, via: [:get], to: "dashboard#index" # user dashboard
+  match 'user_root' => 'user/dashboard#index', as: :user_root
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
