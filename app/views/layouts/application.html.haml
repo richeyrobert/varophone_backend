@@ -1,0 +1,54 @@
+!!!
+%html
+
+  %head
+    %title.hidden
+      = yield(:title) || "Untitled"
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag "application"
+    = javascript_include_tag :application
+    = csrf_meta_tag
+    = render 'shared/analytics'
+    = yield(:head)
+
+  %body
+    = render 'layouts/navbar'
+
+    - if content_for? :modal_box
+      .container
+        #modal-box-container.span6
+          = render 'layouts/flash_hash'
+          .row
+            #modal-box.box.span6
+              %h2.box-title= yield :title
+              .box-content
+                = yield :modal_box
+    - elsif content_for? :naked_page
+      .container
+        = yield :naked_page
+    - else
+      #page{:class => content_for?(:sidebar) && 'with-sidebar'}
+        .container
+          - if show_title?
+            #page-header
+              - if show_submenu?
+                #submenu.pull-right
+                  = yield :submenu
+              %hgroup
+                %h1
+                  = yield :title
+                  - if show_subtitle?
+                    %small= yield :subtitle
+                    - if content_for?(:duplicate_title)
+                      = yield(:duplicate_title)
+          .row
+            - if content_for?(:sidebar)
+              .sidebar.span3
+                = yield :sidebar
+            .content{:class => content_for?(:sidebar) ? 'span9' : 'span12'}
+              = render 'layouts/flash_hash'
+              = yield
+
+  #footer
+    .container
+      %p &copy; #{Time.zone.now.year} Rob Richey

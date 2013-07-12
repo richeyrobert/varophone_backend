@@ -1,0 +1,6 @@
+- content_for(:naked_page) do
+  - if params[:search].present?
+    - title "Search Results"
+  - else 
+    - title "Thanks"
+  %h1.text-center Hi Thanks for visiting my site!!
