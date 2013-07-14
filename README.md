@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Welcome to Adhearsion
 
 You've got a fresh app and you're almost ready to get started. Firstly, you'll need to configure your VoIP platform:
@@ -54,3 +55,9 @@ heroku ps:scale ahn=1
 More detail is available in the [deployment documentation](http://adhearsion.com/docs/best-practices/deployment).
 
 Check out [the Adhearsion website](http://adhearsion.com) for more details of where to go from here.
+=======
+varophone
+=========
+
+A web interface for interacting with freeswitch
+>>>>>>> 68dde866cbc54a45f8b39118d4a39f9bdcd2e201
